@@ -12,9 +12,26 @@ namespace Helpers
             InitializeComponent();
         }
 
-        /*
-         *   DC/RC Circuit Page
-         */
+        private String toScaledString(double value, int digits)
+        {
+            String smag = "f";
+            double dmag = 0.000000000000001;
+
+            if (value >= 0.000000000001) { smag = " p"; dmag = 0.000000000001; }
+            if (value >= 0.000000001) { smag = " n"; dmag = 0.000000001; }
+            if (value >= 0.000001) { smag = " µ"; dmag = 0.000001; }
+            if (value >= 0.001) { smag = " m"; dmag = 0.001; }
+            if (value >= 1) { smag = " "; dmag = 1; }
+            if (value >= 1000.0) { smag = " k"; dmag = 1000.0; }
+            if (value >= 1000000.0) { smag = " M"; dmag = 1000000.0; }
+            if (value >= 1000000000.0) { smag = " G"; dmag = 1000000000.0; }
+            if (value >= 1000000000000.0) { smag = " T"; dmag = 1000000000000.0; }
+            if (value >= 1000000000000000.0) { smag = " P"; dmag = 1000000000000000.0; }
+
+            return (value / dmag).ToString("N" + digits) + smag;
+        }
+
+        #region DC RC Circuit Page
 
         private int DCRC_Selected_Box = 4;
         private double DCRCInitial = 0;
@@ -299,13 +316,184 @@ namespace Helpers
             tabControl3.SelectedTab = tabSPCV;
         }
 
-        /*
-         *  END DC/RC Circuit Page
-         */
+        #endregion DC RC Circuit Page
 
-        /*
-         *  Standard Passive Component Values
-         */
+        #region DC Voltage Divider Page
+
+        private int DCVD_Selected_Box = 2;
+        private double DCVD_VIN = 0;
+        private double DCVD_VOUT = 0;
+        private double DCVD_RUP = 0;
+        private double DCVD_RDOWN = 0;
+        private double DCVD_RUP_Scalar = 1000;
+        private double DCVD_RDOWN_Scalar = 1000;
+
+        private void radDCVD_Vin_CheckedChanged(object sender, EventArgs e)
+        {
+            DCVD_Selected_Box = 1;
+            textDCVD_Vin.Enabled = false;
+            textDCVD_Vout.Enabled = true;
+            textDCVD_Rup.Enabled = true;
+            textDCVD_Rdown.Enabled = true;
+        }
+
+        private void radDCVD_Vout_CheckedChanged(object sender, EventArgs e)
+        {
+            DCVD_Selected_Box = 2;
+            textDCVD_Vin.Enabled = true;
+            textDCVD_Vout.Enabled = false;
+            textDCVD_Rup.Enabled = true;
+            textDCVD_Rdown.Enabled = true;
+        }
+
+        private void radDCVD_Rup_CheckedChanged(object sender, EventArgs e)
+        {
+            DCVD_Selected_Box = 3;
+            textDCVD_Vin.Enabled = true;
+            textDCVD_Vout.Enabled = true;
+            textDCVD_Rup.Enabled = false;
+            textDCVD_Rdown.Enabled = true;
+        }
+
+        private void radDCVD_Rdown_CheckedChanged(object sender, EventArgs e)
+        {
+            DCVD_Selected_Box = 4;
+            textDCVD_Vin.Enabled = true;
+            textDCVD_Vout.Enabled = true;
+            textDCVD_Rup.Enabled = true;
+            textDCVD_Rdown.Enabled = false;
+        }
+
+        private void textDCVD_Vin_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DCVD_VIN = Convert.ToDouble(textDCVD_Vin.Text);
+            }
+            catch (FormatException)
+            {
+                textDCVD_Vin.Text = "0";
+            }
+        }
+
+        private void textDCVD_Vout_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DCVD_VOUT = Convert.ToDouble(textDCVD_Vout.Text);
+            }
+            catch (FormatException)
+            {
+                textDCVD_Vout.Text = "0";
+            }
+        }
+
+        private void textDCVD_Rup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DCVD_RUP = Convert.ToDouble(textDCVD_Rup.Text);
+            }
+            catch (FormatException)
+            {
+                textDCVD_Rup.Text = "0";
+            }
+        }
+
+        private void textDCVD_Rdown_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DCVD_RDOWN = Convert.ToDouble(textDCVD_Rdown.Text);
+            }
+            catch (FormatException)
+            {
+                textDCVD_Rdown.Text = "0";
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0: // ohm
+                    DCVD_RUP_Scalar = 1.0;
+                    break;
+
+                case 1: // kiloohm
+                    DCVD_RUP_Scalar = 1000.0;
+                    break;
+
+                case 2: //megaohm
+                    DCVD_RUP_Scalar = 1000000.0;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox2.SelectedIndex)
+            {
+                case 0: // ohm
+                    DCVD_RDOWN_Scalar = 1.0;
+                    break;
+
+                case 1: // kiloohm
+                    DCVD_RDOWN_Scalar = 1000.0;
+                    break;
+
+                case 2: //megaohm
+                    DCVD_RDOWN_Scalar = 1000000.0;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            switch (DCVD_Selected_Box)
+            {
+                case 1:
+                    textDCVD_Vin.Text = (DCVD_VOUT * (1.0 + ((DCVD_RUP * DCVD_RUP_Scalar) / (DCVD_RDOWN * DCVD_RDOWN_Scalar)))).ToString();
+                    break;
+
+                case 2:
+                    textDCVD_Vout.Text = (DCVD_VIN / (1.0 + ((DCVD_RUP * DCVD_RUP_Scalar) / (DCVD_RDOWN * DCVD_RDOWN_Scalar)))).ToString();
+                    break;
+
+                case 3:
+                    textDCVD_Rup.Text = (((DCVD_RDOWN * DCVD_RDOWN_Scalar) / ((DCVD_VIN / DCVD_VOUT) - 1)) / DCVD_RUP_Scalar).ToString();
+                    break;
+
+                case 4:
+                    textDCVD_Rdown.Text = (((DCVD_RUP * DCVD_RUP_Scalar) * ((DCVD_VIN / DCVD_VOUT) - 1)) / DCVD_RDOWN_Scalar).ToString();
+                    break;
+
+                default:
+                    break;
+            }
+            labelDCVD_RES.Text = toScaledString((DCVD_RDOWN * DCVD_RDOWN_Scalar) + (DCVD_RUP * DCVD_RUP_Scalar), 3) + "Ω";
+            labelDCVD_CUR.Text = toScaledString(DCVD_VIN / ((DCVD_RDOWN * DCVD_RDOWN_Scalar) + (DCVD_RUP * DCVD_RUP_Scalar)), 3) + "A";
+            labelDCVD_POW.Text = toScaledString(DCVD_VIN * DCVD_VIN / ((DCVD_RDOWN * DCVD_RDOWN_Scalar) + (DCVD_RUP * DCVD_RUP_Scalar)), 3) + "W";
+        }
+
+        #endregion DC Voltage Divider Page
+
+        #region Standard Passive Component Values
+
         private Color[] RESISTOR_COLOR = { Color.Black, Color.Brown, Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Gray, Color.White, Color.Gold, Color.Silver };
         private int[] IEC_E192 = { 100, 101, 102, 104, 105, 106, 107, 109, 110, 111, 113, 114, 115, 117, 118, 120, 121, 123, 124, 126, 127, 129, 130, 132, 133, 135, 137, 138, 140, 142, 143, 145, 147, 149, 150, 152, 154, 156, 158, 160, 162, 164, 165, 167, 169, 172, 174, 176, 178, 180, 182, 184, 187, 189, 191, 193, 196, 198, 200, 203, 205, 208, 210, 213, 215, 218, 221, 223, 226, 229, 232, 234, 237, 240, 243, 246, 249, 252, 255, 258, 261, 264, 267, 271, 274, 277, 280, 284, 287, 291, 294, 298, 301, 305, 309, 312, 316, 320, 324, 328, 332, 336, 340, 344, 348, 352, 357, 361, 365, 370, 378, 379, 383, 388, 392, 397, 402, 407, 412, 417, 422, 427, 432, 437, 442, 448, 453, 459, 464, 470, 475, 481, 487, 493, 499, 505, 511, 517, 523, 530, 536, 542, 549, 556, 562, 569, 576, 583, 590, 597, 604, 612, 619, 626, 634, 642, 649, 657, 665, 673, 681, 690, 698, 706, 715, 723, 732, 741, 750, 759, 768, 777, 787, 796, 806, 816, 825, 835, 845, 856, 866, 876, 887, 898, 909, 920, 931, 942, 953, 965, 976, 988 };
         private int[] IEC_E96 = { 100, 102, 105, 107, 110, 113, 115, 118, 121, 124, 127, 130, 133, 137, 140, 143, 147, 150, 154, 158, 162, 165, 169, 174, 178, 182, 187, 191, 196, 200, 210, 215, 221, 226, 232, 237, 243, 249, 255, 261, 267, 274, 280, 287, 294, 301, 309, 316, 324, 332, 340, 348, 357, 365, 374, 383, 392, 402, 412, 422, 432, 442, 453, 464, 475, 487, 499, 511, 523, 536, 549, 562, 576, 590, 604, 619, 634, 649, 665, 681, 698, 715, 732, 750, 768, 787, 806, 825, 845, 866, 887, 909, 931, 953, 976 };
@@ -453,5 +641,7 @@ namespace Helpers
             SPCV_INPUT_SCALAR = 1E-15 * Math.Pow(10, (3 * boxSPCVMagnitude.SelectedIndex));
             SPCVCalculate(sender, e);
         }
+
+        #endregion Standard Passive Component Values
     }
 }

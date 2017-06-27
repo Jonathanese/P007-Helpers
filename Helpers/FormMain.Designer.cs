@@ -86,10 +86,26 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabVDiv = new System.Windows.Forms.TabPage();
-            this.radDCVD_Vin = new System.Windows.Forms.RadioButton();
-            this.radDCVD_Vout = new System.Windows.Forms.RadioButton();
-            this.textDCVD_Vin = new System.Windows.Forms.TextBox();
             this.textDCVD_Vout = new System.Windows.Forms.TextBox();
+            this.textDCVD_Vin = new System.Windows.Forms.TextBox();
+            this.radDCVD_Vout = new System.Windows.Forms.RadioButton();
+            this.radDCVD_Vin = new System.Windows.Forms.RadioButton();
+            this.radDCVD_Rup = new System.Windows.Forms.RadioButton();
+            this.radDCVD_Rdown = new System.Windows.Forms.RadioButton();
+            this.textDCVD_Rup = new System.Windows.Forms.TextBox();
+            this.textDCVD_Rdown = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelDCVD_RES = new System.Windows.Forms.Label();
+            this.labelDCVD_CUR = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.labelDCVD_POW = new System.Windows.Forms.Label();
             this.tabRC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabSpecs.SuspendLayout();
@@ -725,17 +741,33 @@
             // 
             // tabControl2
             // 
+            this.tabControl2.Controls.Add(this.tabVDiv);
             this.tabControl2.Controls.Add(this.tabRC);
             this.tabControl2.Controls.Add(this.tabSpecs);
-            this.tabControl2.Controls.Add(this.tabVDiv);
             this.tabControl2.Location = new System.Drawing.Point(1, -1);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(458, 343);
-            this.tabControl2.TabIndex = 2;
+            this.tabControl2.TabIndex = 1;
             // 
             // tabVDiv
             // 
+            this.tabVDiv.Controls.Add(this.labelDCVD_POW);
+            this.tabVDiv.Controls.Add(this.label11);
+            this.tabVDiv.Controls.Add(this.labelDCVD_CUR);
+            this.tabVDiv.Controls.Add(this.labelDCVD_RES);
+            this.tabVDiv.Controls.Add(this.label6);
+            this.tabVDiv.Controls.Add(this.label5);
+            this.tabVDiv.Controls.Add(this.button4);
+            this.tabVDiv.Controls.Add(this.button3);
+            this.tabVDiv.Controls.Add(this.button2);
+            this.tabVDiv.Controls.Add(this.label4);
+            this.tabVDiv.Controls.Add(this.comboBox2);
+            this.tabVDiv.Controls.Add(this.comboBox1);
+            this.tabVDiv.Controls.Add(this.textDCVD_Rdown);
+            this.tabVDiv.Controls.Add(this.textDCVD_Rup);
+            this.tabVDiv.Controls.Add(this.radDCVD_Rdown);
+            this.tabVDiv.Controls.Add(this.radDCVD_Rup);
             this.tabVDiv.Controls.Add(this.textDCVD_Vout);
             this.tabVDiv.Controls.Add(this.textDCVD_Vin);
             this.tabVDiv.Controls.Add(this.radDCVD_Vout);
@@ -748,41 +780,213 @@
             this.tabVDiv.Text = "V Divider";
             this.tabVDiv.UseVisualStyleBackColor = true;
             // 
-            // radDCVD_Vin
+            // textDCVD_Vout
             // 
-            this.radDCVD_Vin.AutoSize = true;
-            this.radDCVD_Vin.Location = new System.Drawing.Point(7, 6);
-            this.radDCVD_Vin.Name = "radDCVD_Vin";
-            this.radDCVD_Vin.Size = new System.Drawing.Size(40, 17);
-            this.radDCVD_Vin.TabIndex = 0;
-            this.radDCVD_Vin.TabStop = true;
-            this.radDCVD_Vin.Text = "Vin";
-            this.radDCVD_Vin.UseVisualStyleBackColor = true;
+            this.textDCVD_Vout.Enabled = false;
+            this.textDCVD_Vout.Location = new System.Drawing.Point(72, 44);
+            this.textDCVD_Vout.Name = "textDCVD_Vout";
+            this.textDCVD_Vout.Size = new System.Drawing.Size(267, 20);
+            this.textDCVD_Vout.TabIndex = 5;
+            this.textDCVD_Vout.TextChanged += new System.EventHandler(this.textDCVD_Vout_TextChanged);
+            // 
+            // textDCVD_Vin
+            // 
+            this.textDCVD_Vin.Location = new System.Drawing.Point(72, 18);
+            this.textDCVD_Vin.Name = "textDCVD_Vin";
+            this.textDCVD_Vin.Size = new System.Drawing.Size(267, 20);
+            this.textDCVD_Vin.TabIndex = 4;
+            this.textDCVD_Vin.TextChanged += new System.EventHandler(this.textDCVD_Vin_TextChanged);
             // 
             // radDCVD_Vout
             // 
             this.radDCVD_Vout.AutoSize = true;
-            this.radDCVD_Vout.Location = new System.Drawing.Point(7, 32);
+            this.radDCVD_Vout.Checked = true;
+            this.radDCVD_Vout.Location = new System.Drawing.Point(7, 45);
             this.radDCVD_Vout.Name = "radDCVD_Vout";
             this.radDCVD_Vout.Size = new System.Drawing.Size(47, 17);
             this.radDCVD_Vout.TabIndex = 1;
             this.radDCVD_Vout.TabStop = true;
             this.radDCVD_Vout.Text = "Vout";
             this.radDCVD_Vout.UseVisualStyleBackColor = true;
+            this.radDCVD_Vout.CheckedChanged += new System.EventHandler(this.radDCVD_Vout_CheckedChanged);
             // 
-            // textDCVD_Vin
+            // radDCVD_Vin
             // 
-            this.textDCVD_Vin.Location = new System.Drawing.Point(113, 5);
-            this.textDCVD_Vin.Name = "textDCVD_Vin";
-            this.textDCVD_Vin.Size = new System.Drawing.Size(100, 20);
-            this.textDCVD_Vin.TabIndex = 4;
+            this.radDCVD_Vin.AutoSize = true;
+            this.radDCVD_Vin.Location = new System.Drawing.Point(7, 19);
+            this.radDCVD_Vin.Name = "radDCVD_Vin";
+            this.radDCVD_Vin.Size = new System.Drawing.Size(40, 17);
+            this.radDCVD_Vin.TabIndex = 0;
+            this.radDCVD_Vin.Text = "Vin";
+            this.radDCVD_Vin.UseVisualStyleBackColor = true;
+            this.radDCVD_Vin.CheckedChanged += new System.EventHandler(this.radDCVD_Vin_CheckedChanged);
             // 
-            // textDCVD_Vout
+            // radDCVD_Rup
             // 
-            this.textDCVD_Vout.Location = new System.Drawing.Point(113, 31);
-            this.textDCVD_Vout.Name = "textDCVD_Vout";
-            this.textDCVD_Vout.Size = new System.Drawing.Size(100, 20);
-            this.textDCVD_Vout.TabIndex = 5;
+            this.radDCVD_Rup.AutoSize = true;
+            this.radDCVD_Rup.Location = new System.Drawing.Point(7, 71);
+            this.radDCVD_Rup.Name = "radDCVD_Rup";
+            this.radDCVD_Rup.Size = new System.Drawing.Size(45, 17);
+            this.radDCVD_Rup.TabIndex = 6;
+            this.radDCVD_Rup.Text = "Rup";
+            this.radDCVD_Rup.UseVisualStyleBackColor = true;
+            this.radDCVD_Rup.CheckedChanged += new System.EventHandler(this.radDCVD_Rup_CheckedChanged);
+            // 
+            // radDCVD_Rdown
+            // 
+            this.radDCVD_Rdown.AutoSize = true;
+            this.radDCVD_Rdown.Location = new System.Drawing.Point(7, 97);
+            this.radDCVD_Rdown.Name = "radDCVD_Rdown";
+            this.radDCVD_Rdown.Size = new System.Drawing.Size(59, 17);
+            this.radDCVD_Rdown.TabIndex = 7;
+            this.radDCVD_Rdown.Text = "Rdown";
+            this.radDCVD_Rdown.UseVisualStyleBackColor = true;
+            this.radDCVD_Rdown.CheckedChanged += new System.EventHandler(this.radDCVD_Rdown_CheckedChanged);
+            // 
+            // textDCVD_Rup
+            // 
+            this.textDCVD_Rup.Location = new System.Drawing.Point(72, 70);
+            this.textDCVD_Rup.Name = "textDCVD_Rup";
+            this.textDCVD_Rup.Size = new System.Drawing.Size(267, 20);
+            this.textDCVD_Rup.TabIndex = 8;
+            this.textDCVD_Rup.TextChanged += new System.EventHandler(this.textDCVD_Rup_TextChanged);
+            // 
+            // textDCVD_Rdown
+            // 
+            this.textDCVD_Rdown.Location = new System.Drawing.Point(72, 96);
+            this.textDCVD_Rdown.Name = "textDCVD_Rdown";
+            this.textDCVD_Rdown.Size = new System.Drawing.Size(267, 20);
+            this.textDCVD_Rdown.TabIndex = 9;
+            this.textDCVD_Rdown.TextChanged += new System.EventHandler(this.textDCVD_Rdown_TextChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ω",
+            "kΩ",
+            "MΩ"});
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Ω",
+            "kΩ",
+            "MΩ"});
+            this.comboBox1.Location = new System.Drawing.Point(372, 71);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(70, 21);
+            this.comboBox1.TabIndex = 17;
+            this.comboBox1.Text = "kΩ";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
+            "Ω",
+            "kΩ",
+            "MΩ"});
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Ω",
+            "kΩ",
+            "MΩ"});
+            this.comboBox2.Location = new System.Drawing.Point(372, 96);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(70, 21);
+            this.comboBox2.TabIndex = 18;
+            this.comboBox2.Text = "kΩ";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(129, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Voltage Divider Calculator";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(345, 70);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(21, 23);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "╬";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(345, 94);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(21, 23);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "╬";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(7, 123);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(435, 23);
+            this.button4.TabIndex = 26;
+            this.button4.Text = "Calculate";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Resistance";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 180);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Current";
+            // 
+            // labelDCVD_RES
+            // 
+            this.labelDCVD_RES.AutoSize = true;
+            this.labelDCVD_RES.Location = new System.Drawing.Point(69, 153);
+            this.labelDCVD_RES.Name = "labelDCVD_RES";
+            this.labelDCVD_RES.Size = new System.Drawing.Size(10, 13);
+            this.labelDCVD_RES.TabIndex = 29;
+            this.labelDCVD_RES.Text = "-";
+            // 
+            // labelDCVD_CUR
+            // 
+            this.labelDCVD_CUR.AutoSize = true;
+            this.labelDCVD_CUR.Location = new System.Drawing.Point(69, 180);
+            this.labelDCVD_CUR.Name = "labelDCVD_CUR";
+            this.labelDCVD_CUR.Size = new System.Drawing.Size(10, 13);
+            this.labelDCVD_CUR.TabIndex = 30;
+            this.labelDCVD_CUR.Text = "-";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(8, 205);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 13);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Power";
+            // 
+            // labelDCVD_POW
+            // 
+            this.labelDCVD_POW.AutoSize = true;
+            this.labelDCVD_POW.Location = new System.Drawing.Point(69, 205);
+            this.labelDCVD_POW.Name = "labelDCVD_POW";
+            this.labelDCVD_POW.Size = new System.Drawing.Size(10, 13);
+            this.labelDCVD_POW.TabIndex = 32;
+            this.labelDCVD_POW.Text = "-";
             // 
             // MainForm
             // 
@@ -880,6 +1084,22 @@
         private System.Windows.Forms.TextBox textDCVD_Vin;
         private System.Windows.Forms.RadioButton radDCVD_Vout;
         private System.Windows.Forms.RadioButton radDCVD_Vin;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textDCVD_Rdown;
+        private System.Windows.Forms.TextBox textDCVD_Rup;
+        private System.Windows.Forms.RadioButton radDCVD_Rdown;
+        private System.Windows.Forms.RadioButton radDCVD_Rup;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelDCVD_POW;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelDCVD_CUR;
+        private System.Windows.Forms.Label labelDCVD_RES;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
 
