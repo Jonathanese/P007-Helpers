@@ -121,27 +121,27 @@ namespace Helpers
             switch (DCRC_Selected_Box)
             {
                 case 1: // Solve for Initial
-                    textDCRCInitial.Text = (DCRCSupply + (DCRCDesired - DCRCSupply) * Math.Exp(DCRCTime / (DCRCR * DCRCC))).ToString();
+                    textDCRCInitial.Text = (DCRCSupply + (DCRCDesired - DCRCSupply) * Math.Exp((DCRCTime * DCRCTimeScalar) / ((DCRCR * DCRCRScalar) * (DCRCC * DCRCCScalar)))).ToString();
                     break;
 
                 case 2: // Solve for Desired
-                    textDCRCDesired.Text = (DCRCSupply + (DCRCInitial - DCRCSupply) * Math.Exp(-DCRCTime / (DCRCR * DCRCC))).ToString();
+                    textDCRCDesired.Text = (DCRCSupply + (DCRCInitial - DCRCSupply) * Math.Exp(-(DCRCTime * DCRCTimeScalar) / ((DCRCR * DCRCRScalar) * (DCRCC * DCRCCScalar)))).ToString();
                     break;
 
                 case 3: // Solve for Supply
-                    textDCRCSupply.Text = ((DCRCDesired * Math.Exp(DCRCTime / (DCRCR * DCRCC)) - DCRCInitial) / (Math.Exp(DCRCTime / (DCRCR * DCRCC)) - 1)).ToString();
+                    textDCRCSupply.Text = ((DCRCDesired * Math.Exp((DCRCTime * DCRCTimeScalar) / ((DCRCR * DCRCRScalar) * (DCRCC * DCRCCScalar))) - DCRCInitial) / (Math.Exp((DCRCTime * DCRCTimeScalar) / ((DCRCR * DCRCRScalar) * (DCRCC * DCRCCScalar))) - 1)).ToString();
                     break;
 
                 case 4: // Solve for Time
-                    textDCRCTime.Text = (DCRCR * DCRCC * Math.Log((DCRCInitial - DCRCSupply) / (DCRCDesired - DCRCSupply)) / DCRCTimeScalar).ToString();
+                    textDCRCTime.Text = ((DCRCR * DCRCRScalar) * (DCRCC * DCRCCScalar) * Math.Log((DCRCInitial - DCRCSupply) / (DCRCDesired - DCRCSupply)) / DCRCTimeScalar).ToString();
                     break;
 
                 case 5: // Solve for R
-                    textDCRCR.Text = (DCRCTime / (DCRCC * Math.Log((DCRCInitial - DCRCSupply) / (DCRCDesired - DCRCSupply))) / DCRCRScalar).ToString();
+                    textDCRCR.Text = ((DCRCTime * DCRCTimeScalar) / ((DCRCC * DCRCCScalar) * Math.Log((DCRCInitial - DCRCSupply) / (DCRCDesired - DCRCSupply))) / DCRCRScalar).ToString();
                     break;
 
                 case 6: // Solve for C
-                    textDCRCC.Text = (DCRCTime / (DCRCR * Math.Log((DCRCInitial - DCRCSupply) / (DCRCDesired - DCRCSupply))) / DCRCCScalar).ToString();
+                    textDCRCC.Text = ((DCRCTime * DCRCTimeScalar) / ((DCRCR * DCRCRScalar) * Math.Log((DCRCInitial - DCRCSupply) / (DCRCDesired - DCRCSupply))) / DCRCCScalar).ToString();
                     break;
 
                 default:// Do Nothing
@@ -189,7 +189,7 @@ namespace Helpers
         {
             try
             {
-                DCRCTime = Convert.ToDouble(textDCRCTime.Text) * DCRCTimeScalar;
+                DCRCTime = Convert.ToDouble(textDCRCTime.Text);
             }
             catch (FormatException)
             {
@@ -201,7 +201,7 @@ namespace Helpers
         {
             try
             {
-                DCRCR = Convert.ToDouble(textDCRCR.Text) * DCRCRScalar;
+                DCRCR = Convert.ToDouble(textDCRCR.Text);
             }
             catch (FormatException)
             {
@@ -213,7 +213,7 @@ namespace Helpers
         {
             try
             {
-                DCRCC = Convert.ToDouble(textDCRCC.Text) * DCRCCScalar;
+                DCRCC = Convert.ToDouble(textDCRCC.Text);
             }
             catch (FormatException)
             {
@@ -475,11 +475,11 @@ namespace Helpers
                     break;
 
                 case 3:
-                    textDCVD_Rup.Text = (((DCVD_RDOWN * DCVD_RDOWN_Scalar) / ((DCVD_VIN / DCVD_VOUT) - 1)) / DCVD_RUP_Scalar).ToString();
+                    textDCVD_Rup.Text = (((DCVD_RDOWN * DCVD_RDOWN_Scalar) * ((DCVD_VIN / DCVD_VOUT) - 1)) / DCVD_RUP_Scalar).ToString();
                     break;
 
                 case 4:
-                    textDCVD_Rdown.Text = (((DCVD_RUP * DCVD_RUP_Scalar) * ((DCVD_VIN / DCVD_VOUT) - 1)) / DCVD_RDOWN_Scalar).ToString();
+                    textDCVD_Rdown.Text = (((DCVD_RUP * DCVD_RUP_Scalar) / ((DCVD_VIN / DCVD_VOUT) - 1)) / DCVD_RDOWN_Scalar).ToString();
                     break;
 
                 default:
